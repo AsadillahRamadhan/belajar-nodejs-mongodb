@@ -1,0 +1,40 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="mb-3">Add Contact</h2>
+            <form method="post" action="/contact">
+                <% if (typeof err != 'undefined') { 
+                    var emailError = undefined;
+                    var namaError = undefined;
+                    var nomorError = undefined;
+                    err.forEach((e) => {
+                        if(e.param === 'email'){
+                            emailError = e.msg;
+                        } else if (e.param === 'nama'){
+                            namaError = e.msg;
+                        } else {
+                            nomorError = e.msg;
+                        }
+                    });
+                    }
+                %>
+                <div class="mb-3">
+                  <label for="nama" class="form-label">Nama</label>
+                  <input type="text" class="form-control" id="nama" name="nama" required>
+                  <small class="text-small text-danger"><%= namaError ? namaError : '' %></small>
+                </div>
+                <div class="mb-3">
+                  <label for="nohp" class="form-label">No. HP</label>
+                  <input type="text" class="form-control" id="nohp" name="nomor" required>
+                  <small class="text-small text-danger"><%= nomorError ? nomorError : '' %></small>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" id="email">
+                  <small class="text-small text-danger"><%= emailError ? emailError : '' %></small>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Data</button>
+              </form>
+        </div>
+    </div>
+</div>
